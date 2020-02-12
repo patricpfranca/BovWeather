@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { FlatList, PermissionsAndroid } from 'react-native';
-import Geolocation from 'react-native-geolocation-service';
+import Geolocation from '@react-native-community/geolocation';
 
 import BoxTemperature from '~/components/BoxTemperature';
 import ListWeekTemperature from '~/components/ListWeekTemperature';
