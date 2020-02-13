@@ -1,8 +1,7 @@
+import api from '~/services/api';
 import RealmInstance from '~/services/realm';
 
 class WeatherRepository {
-  static get() {}
-
   static save(data) {
     RealmInstance.write(() => {
       RealmInstance.create(
@@ -25,6 +24,18 @@ class WeatherRepository {
         true,
       );
     });
+  }
+
+  static async get(latitude, longitude) {
+    try {
+      const response = await api.get(`lat=${latitude}&log=${longitude}`);
+
+      this.save(response.data.results);
+
+      return response.data.results;
+    } catch (error) {
+      return RealmInstance.objects('WeatherSchema').last();
+    }
   }
 }
 

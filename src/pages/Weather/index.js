@@ -5,8 +5,6 @@ import Geolocation from '@react-native-community/geolocation';
 import BoxTemperature from '~/components/BoxTemperature';
 import ListWeekTemperature from '~/components/ListWeekTemperature';
 
-import api from '~/services/api';
-import RealmInstance from '~/services/realm';
 import WeatherRepository from '~/services/weatherRepository';
 
 import { Container, BoxOtherWeather, TitleWeeks } from './styles';
@@ -40,17 +38,9 @@ export default function Weather() {
       const { latitude, longitude } = currentRegion;
 
       if (latitude && longitude) {
-        try {
-          const response = await api.get(
-            `lat=${latitude}&log=${longitude}&user_ip=remote`,
-          );
+        const response = await WeatherRepository.get(latitude, longitude);
 
-          WeatherRepository.save(response.data.results);
-
-          setWeather(response.data.results);
-        } catch (error) {
-          setWeather(RealmInstance.objects('WeatherSchema')[0]);
-        }
+        setWeather(response);
       }
     }
 
@@ -61,7 +51,7 @@ export default function Weather() {
     <Container>
       <BoxTemperature data={weather} />
       <BoxOtherWeather>
-        <TitleWeeks>Próximos {weather.forecast.length} dias</TitleWeeks>
+        <TitleWeeks>Próximos {weather.forecast?.length} dias</TitleWeeks>
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
