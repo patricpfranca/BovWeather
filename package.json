@@ -24,6 +24,7 @@
     "react-navigation": "^4.1.1",
     "react-navigation-stack": "^2.1.1",
     "reactotron-react-native": "^4.0.3",
+    "realm": "^3.6.3",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
