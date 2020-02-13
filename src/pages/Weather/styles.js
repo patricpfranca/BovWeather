@@ -16,3 +16,5 @@ export const TitleWeeks = styled.Text`
   margin-left: ${sizes.margin_min_1}px;
   font-weight: bold;
 `;
+
+export const Refresh = styled.ScrollView``;
