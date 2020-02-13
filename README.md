@@ -9,7 +9,7 @@
 ## Instalação
 
 ```sh
-  git clone
+  git clone https://github.com/patricpfranca/BovWeather.git
   cd BovWeather
   yarn install
 ```
